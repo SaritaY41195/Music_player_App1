@@ -39,7 +39,10 @@ class _PlaylistDataState extends State<PlaylistData> {
       child: Scaffold(
         backgroundColor: Colors.transparent,
         appBar: AppBar(
-          title: const Text('Playlist', style: TextStyle(color: Colors.white),),
+          title: const Text(
+            'Playlist',
+            style: TextStyle(color: Colors.white),
+          ),
           centerTitle: true,
           iconTheme: IconThemeData(
             color: Colors.white, //change your color here
@@ -104,7 +107,7 @@ class _PlaylistDataState extends State<PlaylistData> {
                           width: MediaQuery.sizeOf(context).width * 0.45,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(15.0),
-                            color: Color(0xff5b0060),
+                            color: const Color(0xff5b0060),
                           ),
                         ),
                       ),
@@ -123,7 +126,8 @@ class _PlaylistDataState extends State<PlaylistData> {
                               ),
                               Icon(
                                 Icons.play_circle,
-                                color: isPlay ? Colors.white : Color(0xff5b0060),
+                                color:
+                                    isPlay ? Colors.white : Color(0xff5b0060),
                               ),
                             ],
                           ),
@@ -139,7 +143,8 @@ class _PlaylistDataState extends State<PlaylistData> {
                               ),
                               Icon(
                                 Icons.shuffle,
-                                color: isPlay ? Color(0xff5b0060) : Colors.white,
+                                color:
+                                    isPlay ? Color(0xff5b0060) : Colors.white,
                               ),
                             ],
                           ),
@@ -153,88 +158,94 @@ class _PlaylistDataState extends State<PlaylistData> {
                 padding: const EdgeInsets.all(10.0),
                 child: SizedBox(
                   height: MediaQuery.sizeOf(context).height * 0.4,
-                  child:
-                      isPlay
-                 ? ListView.builder(
-                      itemCount: widget.playLists.song.length,
-                      shrinkWrap: true,
-                      scrollDirection: Axis.vertical,
-                      itemBuilder: (context, index) {
-                        return ListTile(
-                          leading: Container(
-                            margin: const EdgeInsets.only(right: 10.0),
-                            width: MediaQuery.sizeOf(context).width * 0.15,
-                            decoration: BoxDecoration(
-                              image: DecorationImage(
-                                image: AssetImage(widget.playLists.song[index].coverUrl),
-                                fit: BoxFit.cover,
+                  child: isPlay
+                      ? ListView.builder(
+                          itemCount: widget.playLists.song.length,
+                          shrinkWrap: true,
+                          // scrollDirection: Axis.vertical,
+                          itemBuilder: (context, index) {
+                            return ListTile(
+                              leading: Container(
+                                margin: const EdgeInsets.only(right: 10.0),
+                                width: MediaQuery.sizeOf(context).width * 0.15,
+                                decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                    image: AssetImage(
+                                        widget.playLists.song[index].coverUrl),
+                                    fit: BoxFit.cover,
+                                  ),
+                                  borderRadius: BorderRadius.circular(15.0),
+                                ),
                               ),
-                              borderRadius: BorderRadius.circular(15.0),
-                            ),
-                          ),
-                          title: Text(
-                            widget.playLists.song[index].title,
-                            style: const TextStyle(
-                                fontSize: 18.0, color: Colors.white, fontWeight: FontWeight.bold),
-                          ),
-                          subtitle: Text(
-                            widget.playLists.song[index].description,
-                            style: const TextStyle(
-                                fontSize: 15.0, color: Colors.white54),
-                          ),
-                          trailing: IconButton(
-                            onPressed: () {
-                              Navigator.of(context).push(MaterialPageRoute(builder: (context) =>  SongScreen(song: widget.playLists.song[index])));
-                            },
-                            icon: const Icon(
-                              Icons.more_vert,
-                              color: Colors.white,
-                            ),
-                          ),
-                        );
-                      })
-                 : Expanded(
-                   child: ListView.builder(
-                            itemCount: widget.playLists.song.length,
-                            shrinkWrap: true,
-                            scrollDirection: Axis.vertical,
-                            itemBuilder: (context, index) {
-                             var list = widget.playLists.song;
-                            // list.shuffle();
-                              return ListTile(
-                                leading: Container(
-                                  margin: const EdgeInsets.only(right: 10.0),
-                                  width: MediaQuery.sizeOf(context).width * 0.15,
-                                  decoration: BoxDecoration(
-                                    image: DecorationImage(
-                                      image: AssetImage(list[index].coverUrl),
-                                      fit: BoxFit.cover,
-                                    ),
-                                    borderRadius: BorderRadius.circular(15.0),
-                                  ),
-                                ),
-                                title: Text(
-                                  list[index].title,
-                                  style: const TextStyle(
-                                      fontSize: 18.0, color: Colors.white, fontWeight: FontWeight.bold),
-                                ),
-                                subtitle: Text(
-                                  list[index].description,
-                                  style: const TextStyle(
-                                      fontSize: 15.0, color: Colors.white54),
-                                ),
-                                trailing: IconButton(
-                                  onPressed: () {
-                                    Navigator.of(context).push(MaterialPageRoute(builder: (context) =>  SongScreen(song: widget.playLists.song[index])));
-                                  },
-                                  icon: const Icon(
-                                    Icons.more_vert,
+                              title: Text(
+                                widget.playLists.song[index].title,
+                                style: const TextStyle(
+                                    fontSize: 18.0,
                                     color: Colors.white,
-                                  ),
+                                    fontWeight: FontWeight.bold),
+                              ),
+                              subtitle: Text(
+                                widget.playLists.song[index].description,
+                                style: const TextStyle(
+                                    fontSize: 15.0, color: Colors.white54),
+                              ),
+                              trailing: IconButton(
+                                onPressed: () {
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (context) => SongScreen(
+                                          song: widget.playLists.song[index])));
+                                },
+                                icon: const Icon(
+                                  Icons.more_vert,
+                                  color: Colors.white,
                                 ),
-                              );
-                            }),
-                 ),
+                              ),
+                            );
+                          })
+                      : ListView.builder(
+                          itemCount: widget.playLists.song.length,
+                          shrinkWrap: true,
+                          //scrollDirection: Axis.vertical,
+                          itemBuilder: (context, index) {
+                            var list = widget.playLists.song;
+                            // list.shuffle();
+                            return ListTile(
+                              leading: Container(
+                                margin: const EdgeInsets.only(right: 10.0),
+                                width: MediaQuery.sizeOf(context).width * 0.15,
+                                decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                    image: AssetImage(list[index].coverUrl),
+                                    fit: BoxFit.cover,
+                                  ),
+                                  borderRadius: BorderRadius.circular(15.0),
+                                ),
+                              ),
+                              title: Text(
+                                list[index].title,
+                                style: const TextStyle(
+                                    fontSize: 18.0,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                              subtitle: Text(
+                                list[index].description,
+                                style: const TextStyle(
+                                    fontSize: 15.0, color: Colors.white54),
+                              ),
+                              trailing: IconButton(
+                                onPressed: () {
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (context) => SongScreen(
+                                          song: widget.playLists.song[index])));
+                                },
+                                icon: const Icon(
+                                  Icons.more_vert,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            );
+                          }),
                 ),
               ),
             ],

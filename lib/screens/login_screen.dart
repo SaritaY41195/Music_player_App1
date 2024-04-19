@@ -32,26 +32,19 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
       child: Scaffold(
         backgroundColor: Colors.transparent,
+        appBar: PreferredSize(
+          preferredSize: const Size.fromHeight(250.0),
+          child: AppBar(
+            backgroundColor: Colors.transparent,
+            flexibleSpace: Image.asset('assets/main/music.jpg', fit: BoxFit.cover),
+          ),
+        ),
         body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20.0,vertical: 30.0),
+          padding: const EdgeInsets.symmetric(horizontal: 20.0,),
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Container(
-                //     height: 200,
-                //     width: 400,
-                //     decoration: const  BoxDecoration(
-                //       shape: BoxShape.circle,
-                //       image: DecorationImage(image: AssetImage('assets/main/music.jpg')),
-                //     ),
-                //     ),
-                const Center(
-                  child: CircleAvatar(
-                    radius: 150,
-                    backgroundImage: AssetImage('assets/main/music.jpg'),
-                  ),
-                ),
                 const Text(
                   'Login',
                   style: TextStyle(
@@ -70,14 +63,16 @@ class _LoginScreenState extends State<LoginScreen> {
                     filled: true,
                     hintText: 'Enter Phone Number',
                     border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10.0),
+                      borderRadius: BorderRadius.circular(5.0),
                     ),
                   ),
                 ),
                 const SizedBox(
                   height: 15,
                 ),
-                CustomButton(onPressed: () {}, widget: const Text('Login')),
+                CustomButton(onPressed: () {
+                  Navigator.pushNamed(context, '/home');
+                }, widget: const Text('Login')),
                 const SizedBox(
                   height: 15,
                 ),
@@ -102,7 +97,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
                 const SizedBox(
-                  height: 10,
+                  height: 25,
                 ),
                 CustomButton(
                   onPressed: () {},
@@ -114,10 +109,28 @@ class _LoginScreenState extends State<LoginScreen> {
                         size: 30,
                         color: Colors.red,
                       ),
-                      SizedBox(width: 15,),
-                      Text('Sign with Email')
+                      SizedBox(
+                        width: 15,
+                      ),
+                      Text('Sign with Email'),
                     ],
                   ),
+                ),
+                const SizedBox(
+                  height: 5,
+                ),
+                Center(
+                  child: TextButton(
+                      onPressed: () {
+                        Navigator.of(context).pushNamed('/home');
+                      },
+                      child: const Text(
+                        'Register your app',
+                        style: TextStyle(
+                          fontSize: 18,
+                          color: Colors.white,
+                        ),
+                      )),
                 ),
               ],
             ),
